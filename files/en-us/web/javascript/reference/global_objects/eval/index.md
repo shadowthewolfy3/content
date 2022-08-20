@@ -1,473 +1,406 @@
----
-title: eval()
-slug: Web/JavaScript/Reference/Global_Objects/eval
-tags:
-  - Evaluating JavaScript
-  - JavaScript
-  - Method
-  - Reference
-  - Warning
-  - eval
-browser-compat: javascript.builtins.eval
----
-{{jsSidebar("Objects")}}
 
-> **Warning:** Executing JavaScript from a string is an enormous security
-> risk. It is far too easy for a bad actor to run arbitrary code when you use
-> `eval()`. See [Never use eval()!](#never_use_eval!), below.
+Home  ›  Games  ›  Javascript Game
+10 Simple Javascript Game Codes Free
+Written By Ahmad Ansori  04 March 2020  1 Comment
 
-The **`eval()`** function evaluates JavaScript code represented as a string and returns its completion value. The source is parsed as a script.
+Konten [Tutup]
+Understanding JavaScript
+10 Simple Javascript Game Codes Free
+1. Flappy Bird Game Using JavaScript and HTML5
+Here is the game code for Flappy Bird
+The following tutorial makes a game Flappy Bird
+2. Simple Code Snake Game Using Javascript
+Here is the game code for Snake
+Here is a video tutorial for creating a snake game 
+3. Tetris game in JavaScript
+Here is the game code for Tetris
+Here is a video to make a tetris game
+4. Quiz App With JavaScript
+Here is the game code for Quiz
+Video making quiz game application
+6. Suwit Jawa 2.0 Using Javascript
+Here is the game code for Suwit Jawa
+The following video tutorial for making Javanese Suwit game
+7. Code Ping Pong Game Using JavaScript
+Here is the game code for Ping Pong
+The following is a video tutorial for making ping pong games
+8. Code Memory Game JavaScript
+Here is the game code for Memory
+Next is a video tutorial for creating memory games
+Next is a video tutorial for creating memory games
+9. Hangman Game using Javascript
+Here is the game code for Hangman
+Next is a tutorial on making a hangman game
+10. Bubble Shooter Using Javascript
+Here is the game code for Bubble Shooter
+video tutorial on making the Bubble Shooter game
+Conclusion
+10 Simple Javascript Game Codes Free
+10 Simple Javascript Game Codes Free- On this occasion I will share the code to make a simple game with the Javascript programming language. The game code can later be your reference material for making other simple games.
 
-{{EmbedInteractiveExample("pages/js/globalprops-eval.html")}}
+Before you continue do you already know what is javascript programming ?, if you don't know yet, please read the brief summary below.
 
-## Syntax
+Understanding JavaScript
+JavaScript is one of the most widely used programming languages in the past twenty years. JavaScript programming can be learned quickly and easily, and we can use it for various purposes, for example from increasing the functionality of a site to creating game applications and web-based applications. In addition, there are thousands of themes and JavaScript applications that you can use for free and all of this is thanks to several sites, such as Github.com.
 
-```js
-eval(string)
-```
+Baca Juga: Tempat Wisata di Nganjuk untuk Mengisi Akhir Pekan
 
-### Parameters
+10 Simple Javascript Game Codes Free
+The following is a collection of simple javascript games but has very interesting functions and can be a reference material, these games include:
 
-- `string`
-  - : A string representing a JavaScript expression, statement, or sequence of statements. The expression can include variables and properties of existing objects. It will be parsed as a script, so [`import`](/en-US/docs/Web/JavaScript/Reference/Statements/import) declarations (which can only exist in modules) are not allowed.
+1. Flappy Bird Game Using JavaScript and HTML5
+Flappy Bird is a game that uses 2D display. The aim is to direct the flying bird, named "Faby", which moves continuously to the right, between sets of pipes like Mario. If a player touches the pipe, they lose. Faby quickly flaps every time the player taps the screen, if the screen doesn't knock, then Faby falls due to gravity. Each pair of pipes he navigates yields one player point, with a medal awarded for a score at the end of the match. No medals are awarded for scores less than ten. Bronze medals are awarded for scores between ten and twenty. To receive a silver medal, players must reach 20 points. Gold medals are given to those whose value is higher than thirty points. Players who reach a score of forty or higher receive a platinum medal.
 
-### Return value
+Here is the game code for Flappy Bird
+Code index.html
 
-The completion value of evaluating the given code. If the completion value is empty,
-{{jsxref("undefined")}} is returned.
 
-## Description
+<!DOCTYPE html>
 
-`eval()` is a function property of the global object.
+<html>
 
-The argument of the `eval()` function is a string. It will evaluate the source string as a script body, which means both statements and expressions are allowed. It returns the completion value of the code. For expressions, it's the value the expression evaluates to. Many statements and declarations have completion values as well, but the result may be surprising (for example, the completion value of an assignment is the assigned value, but the completion value of [`let`](/en-US/docs/Web/JavaScript/Reference/Statements/let) is undefined), so it's recommended to not rely on statements' completion values.
+  <head>
 
-There are two modes of `eval()` calls: _direct_ eval and _indirect_ eval. Direct eval only has one form: `eval( )` (the invoked function's name is `eval` and its value is the global `eval` function). Everything else, including invoking it via an aliased variable, via a member access or other expression, or through the optional chaining [`?.`](/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) operator, is indirect.
+    <title>Flappy Bird using JS | by learnWD</title>
 
-```js
-// Indirect call using the comma operator to return eval
-(0, eval)('x + y');
+  </head>
 
-// Indirect call through optional chaining
-eval?.('x + y');
+  <body>
 
-// Indirect call using a variable to store and return eval
-const geval = eval;
-geval('x + y');
+   <h3>flappyBird by LearnWD</h3>
 
-// Indirect call through member access
-const obj = { eval };
-obj.eval('x + y');
-```
+  
 
-Indirect eval can be seen as if the code is evaluated within a separate `<script>` tag. This means:
+   <canvas id="canvas" width="288" height="512"></canvas>
 
-- Indirect eval works in the global scope rather than the local scope, and the code being evaluated doesn't have access to local variables within the scope where it's being called.
+  
 
-    ```js
-    function test() {
-      const x = 2, y = 4;
-      // Direct call, uses local scope
-      console.log(eval('x + y')); // Result is 6
-      console.log(eval?.('x + y')); // Uses global scope, throws because x is undefined
+   <script src="flappyBird.js"></script>
+
+  </body>
+
+</html>
+
+Code flappyBird.js 
+
+
+
+var cvs = document.getElementById("canvas");
+
+var ctx = cvs.getContext("2d");
+
+// load images
+
+var bird = new Image();
+
+var bg = new Image();
+
+var fg = new Image();
+
+var pipeNorth = new Image();
+
+var pipeSouth = new Image();
+
+bird.src = "images/bird.png";
+
+bg.src = "images/bg.png";
+
+fg.src = "images/fg.png";
+
+pipeNorth.src = "images/pipeNorth.png";
+
+pipeSouth.src = "images/pipeSouth.png";
+
+
+
+// some variables
+
+var gap = 85;
+
+var constant;
+
+var bX = 10;
+
+var bY = 150;
+
+var gravity = 1.5;
+
+var score = 0;
+
+// audio files
+
+var fly = new Audio();
+
+var scor = new Audio();
+
+fly.src = "sounds/fly.mp3";
+
+scor.src = "sounds/score.mp3";
+
+// on key down
+
+document.addEventListener("keydown",moveUp);
+
+function moveUp(){
+
+    bY -= 25;
+
+    fly.play();
+
+}
+
+// pipe coordinates
+
+var pipe = [];
+
+pipe[0] = {
+
+    x : cvs.width,
+
+    y : 0
+
+};
+
+// draw images
+
+function draw(){
+
+  
+
+    ctx.drawImage(bg,0,0);
+
+  
+
+  
+
+    for(var i = 0; i < pipe.length; i++){
+
+      
+
+        constant = pipeNorth.height+gap;
+
+        ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+
+        ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+
+            
+
+        pipe[i].x--;
+
+      
+
+        if( pipe[i].x == 125 ){
+
+            pipe.push({
+
+                x : cvs.width,
+
+                y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+
+            });
+
+        }
+
+        // detect collision
+
+      
+
+        if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >=  cvs.height - fg.height){
+
+            location.reload(); // reload the page
+
+        }
+
+      
+
+        if(pipe[i].x == 5){
+
+            score++;
+
+            scor.play();
+
+        }
+
+      
+
+      
+
     }
-    ```
 
-- Indirect `eval` would not inherit the strictness of the surrounding context, and would only be in [strict mode](/en-US/docs/Web/JavaScript/Reference/Strict_mode) if the source string itself has a `"use strict"` directive.
+    ctx.drawImage(fg,0,cvs.height - fg.height);
 
-    ```js
-    function strictContext() {
-      "use strict";
-      eval?.(`with(Math) console.log(PI);`);
+  
+
+    ctx.drawImage(bird,bX,bY);
+
+  
+
+    bY += gravity;
+
+  
+
+    ctx.fillStyle = "#000";
+
+    ctx.font = "20px Verdana";
+
+    ctx.fillText("Score : "+score,10,cvs.height-20);
+
+  
+
+    requestAnimationFrame(draw);
+
+  
+
+}
+
+draw();
+
+Files Images and Sound:  Images | Sound
+
+The following tutorial makes a game Flappy Bird
+
+
+2. Simple Code Snake Game Using Javascript
+The following code to make a simple snake game with JavaScript:
+
+
+Here is the game code for Snake
+
+
+<canvas id="gc" width="400" height="400"></canvas>
+
+<script>
+
+window.onload=function() {
+
+    canv=document.getElementById("gc");
+
+    ctx=canv.getContext("2d");
+
+    document.addEventListener("keydown",keyPush);
+
+    setInterval(game,1000/15);
+
+}
+
+px=py=10;
+
+gs=tc=20;
+
+ax=ay=15;
+
+xv=yv=0;
+
+trail=[];
+
+tail = 5;
+
+function game() {
+
+    px+=xv;
+
+    py+=yv;
+
+    if(px<0) {
+
+        px= tc-1;
+
     }
-    function strictContextStrictEval() {
-      "use strict";
-      eval?.(`"use strict"; with(Math) console.log(PI);`);
+
+    if(px>tc-1) {
+
+        px= 0;
+
     }
-    strictContext(); // logs 3.141592653589793
-    strictContextStrictEval(); // throws a SyntaxError because the source string is in strict mode
-    ```
 
-    On the other hand, direct eval inherits the strictness of the invoking context.
+    if(py<0) {
 
-    ```js
-    function nonStrictContext() {
-      eval(`with(Math) console.log(PI);`);
+        py= tc-1;
+
     }
-    function strictContext() {
-      "use strict";
-      eval(`with(Math) console.log(PI);`);
+
+    if(py>tc-1) {
+
+        py= 0;
+
     }
-    nonStrictContext(); // logs 3.141592653589793
-    strictContext(); // throws a SyntaxError because it's in strict mode
-    ```
 
-- `var`-declared variables and [function declarations](/en-US/docs/Web/JavaScript/Reference/Statements/function) would go into the surrounding scope if the source string is not interpreted in strict mode — for indirect eval, they become global variables. If it's a direct eval in a strict mode context, or if the `eval` source string itself is in strict mode, then `var` and function declarations do not "leak" into the surrounding scope.
+    ctx.fillStyle="black";
 
-    ```js
-    // Neither context nor source string is strict,
-    // so var creates a variable in the surrounding scope
-    eval("var a = 1;");
-    console.log(a); // 1
-    // Context is not strict, but eval source is strict,
-    // so b is scoped to the evaluated script
-    eval("'use strict'; var b = 1;");
-    console.log(b); // ReferenceError: b is not defined
+    ctx.fillRect(0,0,canv.width,canv.height);
 
-    function strictContext() {
-      "use strict";
-      // Context is strict, but this is indirect and the source
-      // string is not strict, so c is still global
-      eval?.("var c = 1;");
-      // Direct eval in a strict context, so d is scoped
-      eval("var d = 1;");
+
+
+    ctx.fillStyle="lime";
+
+    for(var i=0;i<trail.length;i++) {
+
+        ctx.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
+
+        if(trail[i].x==px && trail[i].y==py) {
+
+            tail = 5;
+
+        }
+
     }
-    strictContext();
-    console.log(c); // 1
-    console.log(d); // ReferenceError: d is not defined
-    ```
 
-    [`let`](/en-US/docs/Web/JavaScript/Reference/Statements/let) and [`const`](/en-US/docs/Web/JavaScript/Reference/Statements/const) declarations within the evaluated string are always scoped to that script.
+    trail.push({x:px,y:py});
 
-- Direct eval may have access to additional contextual expressions. For example, in a function's body, one can use [`new.target`](/en-US/docs/Web/JavaScript/Reference/Operators/new.target):
+    while(trail.length>tail) {
 
-    ```js
-    function Ctor() {
-      eval("console.log(new.target)");
+    trail.shift();
+
     }
-    new Ctor(); // [Function: Ctor]
-    ```
 
-In strict mode, declaring a variable named `eval` or re-assigning `eval` is a {{jsxref("SyntaxError")}}.
 
-```js example-bad
-"use strict";
 
-const eval = 1; // SyntaxError: Unexpected eval or arguments in strict mode
-```
+    if(ax==px && ay==py) {
 
-If the argument of `eval()` is not a string, `eval()` returns the
-argument unchanged. In the following example, the `String` constructor is
-specified and `eval()` returns a `String` object rather than
-evaluating the string.
+        tail++;
 
-```js
-eval(new String('2 + 2')); // returns a String object containing "2 + 2"
-eval('2 + 2');             // returns 4
-```
+        ax=Math.floor(Math.random()*tc);
 
-You can work around this limitation in a generic fashion by using
-`toString()`.
+        ay=Math.floor(Math.random()*tc);
 
-```js
-const expression = new String('2 + 2');
-eval(expression.toString());            // returns 4
-```
+    }
 
-## Never use eval()!
+    ctx.fillStyle="red";
 
-`eval()` is a dangerous function, which executes the code it's passed with
-the privileges of the caller. If you run `eval()` with a string that could be
-affected by a malicious party, you may end up running malicious code on the user's
-machine with the permissions of your webpage / extension. More importantly, a
-third-party code can see the scope in which `eval()` was invoked (if it's a direct eval), which can
-lead to possible attacks in ways to which the similar
-{{jsxref("Global_Objects/Function", "Function")}} is not susceptible.
+    ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
 
-`eval()` is also slower than the alternatives, since it has to invoke the
-JavaScript interpreter, while many other constructs are optimized by modern JS engines.
-
-Additionally, modern JavaScript interpreters convert JavaScript to machine code. This
-means that any concept of variable naming gets obliterated. Thus, any use of
-`eval()` will force the browser to do long expensive variable name lookups to
-figure out where the variable exists in the machine code and set its value.
-Additionally, new things can be introduced to that variable through `eval()`
-such as changing the type of that variable, forcing the browser to re-evaluate all of
-the generated machine code to compensate.
-
-Fortunately, there's a very good alternative to `eval()`: using
-the [`Function`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) constructor. Bad code with `eval()`:
-
-```js
-function looseJsonParse(obj) {
-  return eval(`(${obj})`);
-}
-console.log(looseJsonParse(
-  "{a:(4-1), b:function(){}, c:new Date()}"
-))
-```
-
-Better code without `eval()`:
-
-```js
-function looseJsonParse(obj) {
-  return Function(`"use strict";return (${obj})`)();
-}
-console.log(looseJsonParse(
-  "{a:(4-1), b:function(){}, c:new Date()}"
-))
-```
-
-The two code snippets above may seem to work the same way, but they do not;
-the `eval()` one is a great deal slower. Notice
-`c: new Date()` in the evaluated string. In the function without the
-`eval()`, the object is being evaluated in the global scope, so it is safe
-for the browser to assume that `Date` refers to `window.Date()`
-instead of a local variable called `Date`. However, in the code using
-`eval()`, the browser cannot assume this. For example, in the following code,
-`Date` in the evaluated string doesn't refer to `window.Date()`.
-
-```js
-function Date(n) {
-  return ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][n%7 || 0];
-}
-function looseJsonParse(obj) {
-  return eval(`(${obj})`);
-}
-console.log(looseJsonParse(
-  "{a:(4-1), b:function(){}, c:new Date()}"
-))
-```
-
-Thus, in the `eval()` version of the code, the browser is forced to make the
-expensive lookup call to check to see if there are any local variables called
-`Date()`. This is incredibly inefficient compared to `Function()`.
-
-In a related circumstance, if you actually want your `Date()`
-function to be called from the code inside `Function()`, should
-you just take the easy way out and use `eval()`? No! Never. Instead,
-try the approach below.
-
-```js
-function Date(n) {
-  return ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][n%7 || 0];
-}
-function runCodeWithDateFunction(obj) {
-  return Function(`"use strict";return (${obj})`)()(
-    Date
-  );
-}
-console.log(runCodeWithDateFunction(
-  "function(Date){ return Date(5) }"
-))
-```
-
-The code above may seem inefficiently slow because of the triple nested function, but
-let's analyze the benefits of the efficient method above:
-
-- It allows the code in the string passed to `runCodeWithDateFunction()` to
-  be minified.
-- Function call overhead is minimal, making the far smaller code size well worth the
-  benefit
-- `Function()` more easily allows your code to benefit from the possible performance improvements provided by `"use strict";`
-- The code does not use `eval()`, making it orders of magnitude faster than
-  otherwise.
-
-Lastly, let's examine minification. With using `Function()` as shown above,
-you can minify the code string passed to `runCodeWithDateFunction()` far more
-efficiently because the function arguments names can be minified too as seen in the
-minified code below.
-
-```js
-console.log(Function('"use strict";return(function(a){return a(5)})')()(function(a){
-return"Monday Tuesday Wednesday Thursday Friday Saturday Sunday".split(" ")[a%7||0]}));
-```
-
-There are also additional safer (and faster!) alternatives to `eval()` or
-`Function()` for common use-cases.
-
-The difference between `eval()` and `Function()` is that the source string passed to `Function()` is parsed as function body, not as a script. There are a few nuances — for example, you can use `return` statements in a function body but not in a script. In case you intend to parse the content as a script, using indirect eval and forcing strict mode can be another secure alternative.
-
-```js
-function looseJsonParse(obj) {
-  return eval?.(`'use strict';(${obj})`);
-}
-console.log(looseJsonParse(
-  "{a:(4-1), b:function(){}, c:new Date()}"
-))
-```
-
-This way, the code being evaluated does not have access to the local scope and cannot define global variables.
-
-### Accessing member properties
-
-You should not use `eval()` to convert property names into properties.
-Consider the following example where the property of the object to be accessed is not
-known until the code is executed. This can be done with `eval()`:
-
-```js
-const obj = { a: 20, b: 30 };
-const propName = getPropName();  // returns "a" or "b"
-
-const result = eval(`obj.${propName}`);
-```
-
-However, `eval()` is not necessary here. In fact, its use here is
-discouraged. Instead, use the
-[property accessors](/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors),
-which are much faster and safer:
-
-```js
-const obj = { a: 20, b: 30 };
-const propName = getPropName();  // returns "a" or "b"
-const result = obj[propName];  //  obj[ "a" ] is the same as obj.a
-```
-
-You can even use this method to access descendant properties. Using `eval()`
-this would look like:
-
-```js
-const obj = {a: {b: {c: 0}}};
-const propPath = getPropPath();  // returns e.g. "a.b.c"
-
-const result = eval(`obj.${propPath}`);
-```
-
-Avoiding `eval()` here could be done by splitting the property path and
-looping through the different properties:
-
-```js
-function getDescendantProp(obj, desc) {
-  const arr = desc.split('.');
-  while (arr.length) {
-    obj = obj[arr.shift()];
-  }
-  return obj;
 }
 
-const obj = {a: {b: {c: 0}}};
-const propPath = getPropPath();  // returns e.g. "a.b.c"
-const result = getDescendantProp(obj, propPath);
-```
+function keyPush(evt) {
 
-Setting a property that way works similarly:
+    switch(evt.keyCode) {
 
-```js
-function setDescendantProp(obj, desc, value) {
-  const arr = desc.split('.');
-  while (arr.length > 1) {
-    obj = obj[arr.shift()];
-  }
-  return obj[arr[0]] = value;
+        case 37:
+
+            xv=-1;yv=0;
+
+            break;
+
+        case 38:
+
+            xv=0;yv=-1;
+
+            break;
+
+        case 39:
+
+            xv=1;yv=0;
+
+            break;
+
+        case 40:
+
+            xv=0;yv=1;
+
+            break;
+
+    }
+
 }
 
-const obj = {a: {b: {c: 0}}};
-const propPath = getPropPath();  // returns e.g. "a.b.c"
-const result = setDescendantProp(obj, propPath, 1);  // obj.a.b.c will now be 1
-```
-
-### Use functions instead of evaluating snippets of code
-
-JavaScript has [first-class functions](https://en.wikipedia.org/wiki/First-class_function),
-which means you can pass functions as arguments to other APIs, store them in variables
-and objects' properties, and so on. Many DOM APIs are designed with this in mind, so you
-can (and should) write:
-
-```js
-// instead of setTimeout(" … ", 1000) use:
-setTimeout(function() { /* … */ }, 1000);
-
-// instead of elt.setAttribute("onclick", "…") use:
-elt.addEventListener('click', function() { /* … */ } , false);
-```
-
-[Closures](/en-US/docs/Web/JavaScript/Closures) are also helpful as a way to
-create parameterized functions without concatenating strings.
-
-### Parsing JSON (converting strings to JavaScript objects)
-
-If the string you're calling `eval()` on contains data (for example, an
-array: `"[1, 2, 3]"`), as opposed to code, you should consider switching to
-{{Glossary("JSON")}}, which allows the string to use a subset of JavaScript syntax to
-represent data.
-
-Note that since JSON syntax is limited compared to JavaScript syntax, many valid
-JavaScript literals will not parse as JSON. For example, trailing commas are not allowed
-in JSON, and property names (keys) in object literals must be enclosed in quotes. Be
-sure to use a JSON serializer to generate strings that will be later parsed as JSON.
-
-### Pass data instead of code
-
-For example, an extension designed to scrape contents of web-pages could have the
-scraping rules defined in [XPath](/en-US/docs/Web/XPath) instead of JavaScript
-code.
-
-## Examples
-
-### Using eval()
-
-In the following code, both of the statements containing `eval()` return 42.
-The first evaluates the string `"x + y + 1"`; the second evaluates the string
-`"42"`.
-
-```js
-const x = 2;
-const y = 39;
-const z = '42';
-eval('x + y + 1'); // returns 42
-eval(z);           // returns 42
-```
-
-### eval() returns the completion value of statements
-
-`eval()` returns the completion value of statements. For `if`, it would be the last expression or statement evaluated.
-
-```js
-const str = 'if (a) { 1 + 1 } else { 1 + 2 }';
-let a = true;
-let b = eval(str);  // returns 2
-
-console.log(`b is: ${b}`);
-
-a = false;
-b = eval(str);  // returns 3
-
-console.log(`b is: ${b}`);
-```
-
-The following example uses `eval()` to evaluate the string `str`.
-This string consists of JavaScript statements that assigns `z` a value of 42
-if `x` is five, and assigns 0 to `z` otherwise. When the second
-statement is executed, `eval()` will cause these statements to be performed,
-and it will also evaluate the set of statements and return the value that is assigned to
-`z`, because the completion value of an assignment is the assigned value.
-
-```js
-const x = 5;
-const str = "if (x === 5) {console.log('z is 42'); z = 42;} else z = 0;";
-
-console.log('z is ', eval(str));
-```
-
-If you assign multiple values then the last value is returned.
-
-```js
-let x = 5;
-const str = "if (x === 5) {console.log('z is 42'); z = 42; x = 420; } else z = 0;";
-
-console.log('x is ', eval(str)); // z is 42  x is 420
-```
-
-### eval() as a string defining function requires "(" and ")" as prefix and suffix
-
-```js
-// This is a function declaration
-const fctStr1 = 'function a() {}'
-// This is a function expression
-const fctStr2 = '(function b() {})'
-const fct1 = eval(fctStr1)  // return undefined, but `a` is available as a global function now
-const fct2 = eval(fctStr2)  // return the function `b`
-```
-
-## Specifications
-
-{{Specifications}}
-
-## Browser compatibility
-
-{{Compat}}
-
-## See also
-
-- [Property accessors](/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors)
-- [WebExtensions: Using eval in content scripts](/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#using_eval_in_content_scripts)
+</script>
